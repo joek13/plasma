@@ -3,9 +3,10 @@ import sdl2.ext
 import noise
 import math
 
-WIDTH = 50
-HEIGHT = 50
-SCALE = 10
+WIDTH = 50 # number of pixels horizontally.
+HEIGHT = 50 # number of pixels vertically.
+SCALE = 10 # resolution scale, for that good retro feel.
+FRAMES = 25 # the number of frames corresponding to a unit on the simplex cube.
 
 def main():
     window_size = (int(WIDTH * SCALE), int(HEIGHT * SCALE))
@@ -39,7 +40,7 @@ COLOR_2=[119, 0, 193]
 COLOR_3=[255, 50, 74]
 
 def get_color(x, y, frame, freq = 1.0):
-    val = noise.snoise3(float(x) / float(WIDTH), float(y) / float(HEIGHT), float(frame) / 200.0, octaves=1, persistence=0.5, lacunarity=2.0)
+    val = noise.snoise3(float(x) / float(WIDTH), float(y) / float(HEIGHT), float(frame) / FRAMES, octaves=1, persistence=0.5, lacunarity=2.0)
     val = math.sin(val * freq)
     t = (val + 1) / 2.0
     if t < 0.5:
